@@ -37,9 +37,11 @@ const client = new ApolloClient({
 
 function App() {
   return (
+    // this provider will give us access to the server data ( this is held by the apolloserver as a copie)
     <ApolloProvider client={client}>
       <Router>
         <div>
+          {/* this will give us access to the the object store */}
           <StoreProvider>
             <Nav />
             <Routes>

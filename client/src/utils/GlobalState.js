@@ -11,9 +11,11 @@ const { Provider } = StoreContext; // We are getting the provider here because, 
 //The Provider is a special type of React component that we wrap our application in so it can make the state data that's passed into 
 //it as a prop available to all other components
 
+// this is a function to update the state, and we are calling this inside of the provider component
 const StoreProvider = ({ value = [], ...props }) => { // without the ...props nothing will work
   const [state, dispatch] = useProductReducer({
     products: [],
+    cart: [],
     categories: [],
     currentCategory: '',
   });

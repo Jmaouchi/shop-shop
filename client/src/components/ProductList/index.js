@@ -14,20 +14,27 @@ function ProductList() {
 
   const { loading, data } = useQuery(QUERY_PRODUCTS);
 
+  // this effect will fireoff straight after the component loads
   useEffect(() => {
+    // if there is data, then update the UPDATE_PRODUCTS action to hold the data that we getting 
     if (data) {
+      // this is the what will call the state to update
       dispatch({
+        // the type of the action
         type: UPDATE_PRODUCTS,
+        // what data is going to store in the action type
         products: data.products,
       });
     }
+    // if there is no data return that array empty 
   }, [data, dispatch]);
 
+  // If we dont provid the id then retun the whole data 
   function filterProducts() {
     if (!currentCategory) {
       return state.products;
     }
-
+    
     return state.products.filter(
       (product) => product.category._id === currentCategory
     );

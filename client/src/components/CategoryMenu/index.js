@@ -11,17 +11,20 @@ import {
 import { QUERY_CATEGORIES } from '../../utils/queries';
 
 function CategoryMenu() {
-  const [state, dispatch] = useStoreContext();
+  const [state, dispatch] = useStoreContext(); // the useStoreContext will be holding the data that is in the object store
 
+  // this will be an empty object at first
   const { categories } = state;
 
   const { data: categoryData } = useQuery(QUERY_CATEGORIES);
 
+  // this will fire of and change the object store, and exactly the UPDATE_CATEGORIES action, it will change the value of the action which is 
+  //categories that use to be an empty array
   useEffect(() => {
     if (categoryData) {
       dispatch({
         type: UPDATE_CATEGORIES,
-        categories: categoryData.categories,
+        categories: categoryData.categories, // here we updating the categories, using the UPDATE_CATEGORY action 
       });
     }
   }, [categoryData, dispatch]);
